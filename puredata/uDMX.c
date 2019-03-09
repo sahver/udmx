@@ -174,11 +174,9 @@ void uDMX_float(t_uDMX *x, t_floatarg f)
 	if (x->channel > 512) x->channel=512;
 	if (x->channel < 0) x->channel=0;
 
-/*
 	if (x->debug) {
 		post("uDMX: channel %i set to %i", (int) x->channel, (int) f);
 	}
-*/
 
 	unsigned char       buffer[8];
 	int                 nBytes;
@@ -231,9 +229,9 @@ void uDMX_list(t_uDMX *x, t_symbol *s, short ac, t_atom *av)
 
 //--------------------------------------------------------------------------
 
-void uDMX_debug(t_uDMX *x)
+void uDMX_debug(t_uDMX *x, t_floatarg f)
 {
-	x->debug = ! x->debug;
+	x->debug = (int) f;;
 	post("uDMX: debug=%i", x->debug);
 }
 
@@ -275,7 +273,7 @@ void *uDMX_new(t_floatarg ch)
 	t_uDMX *x = (t_uDMX *)pd_new(uDMX_class);
 
 	x->channel = ch;
-	x->debug = 1;
+	x->debug = 0;
 	x->dev = NULL;
 
 	// 2nd inlet: set channel
@@ -297,7 +295,7 @@ void uDMX_setup(void)
 				 A_DEFFLOAT, 0);
 
 	class_addfloat ( uDMX_class, (t_method) uDMX_float); 
-	class_addmethod( uDMX_class, (t_method) uDMX_debug, gensym("debug"), 0);
+	class_addmethod( uDMX_class, (t_method) uDMX_debug, gensym("debug"), A_DEFFLOAT, 0);
 	class_addlist  ( uDMX_class, (t_method) uDMX_list);
 	class_addmethod( uDMX_class, (t_method) uDMX_open, gensym("open"), 0);
 	class_addmethod( uDMX_class, (t_method) uDMX_close, gensym("close"), 0);
