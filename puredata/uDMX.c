@@ -13,8 +13,8 @@
 	License:	GNU GPL 2.0 www.gnu.org
 
 	Version:	0.3	2019-03
-			0.2	2009-06-30
-			0.1	2007-01-28
+						0.2	2009-06-30
+						0.1	2007-01-28
 	*/
 
 // import standard libc API
@@ -294,13 +294,13 @@ void uDMX_setup(void)
 				 CLASS_DEFAULT,
 				 A_DEFFLOAT, 0);
 
-	class_addfloat ( uDMX_class, (t_method) uDMX_float); 
+	class_addfloat ( uDMX_class, (t_method) uDMX_float);
 	class_addmethod( uDMX_class, (t_method) uDMX_debug, gensym("debug"), A_DEFFLOAT, 0);
 	class_addlist  ( uDMX_class, (t_method) uDMX_list);
 	class_addmethod( uDMX_class, (t_method) uDMX_open, gensym("open"), 0);
 	class_addmethod( uDMX_class, (t_method) uDMX_close, gensym("close"), 0);
 
-	post("\nuDMX version 0.9 - (c) 2006 [ a n y m a ]", 0);
+	post("\nuDMX version 0.10 - (c) 2006 [ a n y m a ]", 0);
 }
 
 //--------------------------------------------------------------------------
